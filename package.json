@@ -17,7 +17,7 @@
     "@babel/preset-react": "^7.10.4"
   },
   "scripts": {
-    "build": "node_modules/.bin/babel client/src --out-dir client/public --presets @babel/preset-react --source-maps inline --watch",
+    "react-dev": "node_modules/.bin/babel client/src --out-dir client/public --presets @babel/preset-react --source-maps inline --watch",
     "server-dev": "nodemon server.js"
   },
   "repository": {

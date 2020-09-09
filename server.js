@@ -3,7 +3,7 @@ var parser = require('body-parser');
 
 var app = express();
 
-app.use(express.static('client/public'));
+app.use(express.static('./'));
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 

@@ -1,6 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import e from 'express';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -170,7 +168,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Checkout</h1>
-        {loadForm()}
+        {this.loadForm()}
       </div>
     )
   }

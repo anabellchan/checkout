@@ -39,11 +39,58 @@ class App extends React.Component {
     this.handleBillingInputChange = this.handleBillingInputChange.bind(this);
   }
 
+  saveInfo() {
+    $.ajax({
+      url: 'http://localhost:3000/save',
+      method: 'POST',
+      data: this.state
+    })
+      .done(() => {
+        this.loadForm();
+      });
+  }
+
   handleHomePage(e) {
     e.preventDefault();
     // go to next form
     this.setState({
       form: 'account'
+    });
+    this.loadForm();
+  }
+
+  handleAccount(e) {
+    e.preventDefault();
+    // jquery post to the server
+    this.setState({
+      form: 'shipping'
+    });
+    this.saveInfo();
+  }
+
+  handleShipping(e) {
+    e.preventDefault();
+    // jquery post to the server
+    this.setState({
+      form: 'payment'
+    });
+    this.saveInfo();
+  }
+
+  handlePayment(e) {
+    e.preventDefault();
+    // jquery post to the server
+    this.setState({
+      form: 'confirmation'
+    });
+    this.saveInfo();
+  }
+
+  handleConfirmation(e) {
+    e.preventDefault();
+    // send to homepage
+    this.setState({
+      form: 'homepage'
     });
     this.loadForm();
   }
@@ -57,15 +104,6 @@ class App extends React.Component {
     });
   }
 
-  handleAccount(e) {
-    e.preventDefault();
-    // jquery post to the server
-    this.setState({
-      form: 'shipping'
-    });
-    this.loadForm();
-  }
-
   handleShippingInputChange(e) {
     this.setState({
       shipping: {
@@ -73,15 +111,6 @@ class App extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-  }
-
-  handleShipping(e) {
-    e.preventDefault();
-    // jquery post to the server
-    this.setState({
-      form: 'payment'
-    });
-    this.loadForm();
   }
 
   handlePaymentInputChange(e) {
@@ -100,24 +129,6 @@ class App extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-  }
-
-  handlePayment(e) {
-    e.preventDefault();
-    // jquery post to the server
-    this.setState({
-      form: 'confirmation'
-    });
-    this.loadForm();
-  }
-
-  handleConfirmation(e) {
-    e.preventDefault();
-    // send to homepage
-    this.setState({
-      form: 'homepage'
-    });
-    this.loadForm();
   }
 
   loadForm() {
@@ -293,7 +304,5 @@ class App extends React.Component {
     )
   }
 }
-
-
 
 ReactDOM.render(<App/>, document.getElementById('app'));

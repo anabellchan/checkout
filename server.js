@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use(express.static('./'));
 
-app.post('/account', (req, res) => {
+app.post('/save', (req, res) => {
   console.log(req.body);
   // if successful, go to the next form
   res.send('ok');

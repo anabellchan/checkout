@@ -1,4 +1,5 @@
 var express = require('express');
+var db = require('./database.js');
 
 var app = express();
 
@@ -8,9 +9,15 @@ app.use(express.json());
 app.use(express.static('./'));
 
 app.post('/save', (req, res) => {
-  console.log(req.body);
-  // if successful, go to the next form
-  res.send('ok');
+  db.save(req.body, (err, data) => {
+    if (err) {
+      console.error(err.stack);
+      res.sendStatus(500);
+    } else {
+      console.log('save result', data);
+      res.sendStatus(201);
+    }
+  });
 });
 
 const port = 3000;

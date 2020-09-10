@@ -1,11 +1,17 @@
 var express = require('express');
-var parser = require('body-parser');
 
 var app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(express.static('./'));
-app.use(parser.urlencoded({ extended: true }));
-app.use(parser.json());
+
+app.post('/account', (req, res) => {
+  console.log(req.body);
+  // if successful, go to the next form
+  res.send('ok');
+});
 
 const port = 3000;
 app.listen(port, () => {
